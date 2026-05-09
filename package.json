@@ -1,0 +1,15 @@
+{
+  "name": "night-eating-research",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "夜食症研究文獻日報 - Night Eating Syndrome Research Daily Report",
+  "scripts": {
+    "fetch": "node scripts/fetch_papers.mjs --days 7 --max-papers 50 --output papers.json",
+    "report": "node scripts/generate_report.mjs --input papers.json --output docs/nes-today.html",
+    "index": "node scripts/generate_index.mjs"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}
