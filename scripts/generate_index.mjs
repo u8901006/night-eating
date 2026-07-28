@@ -72,7 +72,7 @@ function main() {
     <div class="link-row"><a href="https://buymeacoffee.com/CYlee" target="_blank">&#x2615; Buy Me a Coffee</a></div>
   </div>
   <footer>
-    <p>Powered by PubMed + Zhipu AI &middot; <a href="https://github.com/u8901006/night-eating">GitHub</a></p>
+    <p>Powered by PubMed + NVIDIA AI &middot; <a href="https://github.com/u8901006/night-eating">GitHub</a></p>
   </footer>
 </div>
 </body>
