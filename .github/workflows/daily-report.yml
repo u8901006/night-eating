@@ -1,6 +1,11 @@
 name: Night Eating Daily Report
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/generate_report.mjs"
+      - ".github/workflows/daily-report.yml"
   schedule:
     - cron: "10 0 * * *"  # UTC 00:10 = GMT+8 08:10
   workflow_dispatch:
