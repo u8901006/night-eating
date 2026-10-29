@@ -14,10 +14,10 @@ import {
 import { parseArgs } from "node:util";
 
 const API_BASE = 'https://integrate.api.nvidia.com/v1';
-const MODELS = ['nvidia/nemotron-3-super-120b-a12b', 'nvidia/nemotron-3-nano-30b-a3b'];
+const MODELS = ['nvidia/nemotron-3.5-lightning-30b-a3b', 'google/gemma-4-31b-it'];
 const MAX_TOKENS = 16384;
-const TIMEOUT_MS = 480_000;
-const MAX_RETRIES = 3;
+const TIMEOUT_MS = 180_000;
+const MAX_RETRIES = 2;
 
 const NES_TAGS = [
   "夜食症",
@@ -194,9 +194,11 @@ async function analyzePapers(apiKey, papersData) {
             { role: "system", content: SYSTEM_PROMPT },
             { role: "user", content: prompt },
           ],
-          temperature: 1.0,
-          top_p: 0.95,
-          max_tokens: MAX_TOKENS, stream: false, chat_template_kwargs: { enable_thinking: false },
+          temperature: model.startsWith('google/') ? 0.5 : 1.0,
+          top_p: model.startsWith('google/') ? 1 : 0.95,
+          max_tokens: MAX_TOKENS,
+          stream: false,
+          ...(model.startsWith('nvidia/') ? { chat_template_kwargs: { enable_thinking: false } } : {}),
         };
 
         const resp = await fetch(`${API_BASE}/chat/completions`, {
